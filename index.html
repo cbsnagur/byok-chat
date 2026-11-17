@@ -284,15 +284,15 @@ const store = {
 };
 const PREF_KEYS = ['base','model','api','effort','maxtok','sys'];
 function loadPrefs(){
-  const raw = store.get('terra.prefs');
+  const raw = store.get('byok.prefs');
   if(raw){ try{ Object.entries(JSON.parse(raw)).forEach(([k,v])=>{ if(els[k] && PREF_KEYS.includes(k)) els[k].value = v; }); }catch(e){} }
-  const k = store.get('terra.key');
+  const k = store.get('byok.key');
   if(k){ els.key.value = k; els.remember.checked = true; }
 }
 function savePrefs(){
   const p = {}; PREF_KEYS.forEach(k=>p[k]=els[k].value);
-  store.set('terra.prefs', JSON.stringify(p));
-  els.remember.checked ? store.set('terra.key', els.key.value) : store.del('terra.key');
+  store.set('byok.prefs', JSON.stringify(p));
+  els.remember.checked ? store.set('byok.key', els.key.value) : store.del('byok.key');
   paintPath();
 }
 function paintPath(){
